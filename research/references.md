@@ -70,6 +70,53 @@
 - **治理与信任**：早建治理基础设施的组织反而部署更快；治理成为对客户/监管/合作伙伴的信任信号。
 - 来源：[Firecrawl: Agentic AI Trends](https://www.firecrawl.dev/blog/agentic-ai-trends)、[Kai Waehner: Enterprise Agentic AI Landscape 2026](https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/)
 
+## 四、Agent Runtime 与版本控制（来自官方系列总纲）
+
+> 来源：矩阵起源官方系列文章总纲《从数据版本控制到智能体自进化——矩阵起源的 AI 基础设施之路》（"Control your data, trust your AI"）。以下为白皮书 v2 主线的事实依据。
+
+### Agent 发展三阶段
+- **能力涌现（2023）**：GPT-4 发布；AutoGPT、BabyAGI、MetaGPT 证明大模型能规划任务、调用工具、执行多步操作。
+- **接入世界（2024–2025）**：Harness Engineering 与 Context Engineering 时代；MCP 成为连接模型与外部系统的开源标准；LangChain、CrewAI、LangGraph 解决 tool use / multi-agent 编排 / 上下文管理。
+- **稳定运行（2026–）**：让 Agent 长时间、稳定、可恢复、可审计、可协作地运行。行业信号：OpenAI Agents SDK 强调原生 sandbox、snapshotting and rehydration、长时任务持久执行；Anthropic 把 long-running agents、managed agents、agent evals 作为核心方向；Google 推 A2A（agent-to-agent）协作协议。
+
+### 从 Harness 到 Runtime：四大核心问题 → 同一个缺口
+- ① 状态管理与持久执行 → 需要**快照和恢复**
+- ② 可观测、可评估、可审计 → 需要**追溯和比较**（diff）
+- ③ 协议与协作 → 需要**隔离和合并**（clone + merge）
+- ④ 记忆与状态治理 → 需要**版本化和冲突检测**
+- 结论：以上正是**版本控制系统**的全部能力。"代码有 Git，Agent 的数据和状态也需要一个 Git"——但需处理 TB 级结构化数据、提供行级 diff 与语义级 merge、保证事务原子性，**只能在数据库内核中实现**。
+
+### 矩阵起源五年技术路径
+- **2020–2023 数据库内核**：开源构建 MatrixOne（云原生 HTAP）。四个关键架构选择——**不可变存储**（S3 兼容对象存储、写入即不可变、删除用墓碑、历史天然保留）、**MVCC**（每事务一致快照、独立工作空间、提交原子生效）、**存算分离**（CN 与 S3 分离、计算水平扩展、版本控制不影响生产负载）、**LSM 树**（按主键组织、变更以增量对象追加、两版本差异天然是增量对象集合、diff 无需全表扫描）。
+- **2024 Git for Data**（数据库内核级版本控制原语）：
+  - `snapshot`：记录某时间点表状态，本质是元数据目录的一个引用。
+  - `clone`：零拷贝创建副本，只复制元数据目录结构——**0.2 秒完成，占用 314KB**。
+  - `diff`：只扫描两版本间增量对象——**6 亿行表 diff 仅需 3 秒**。
+  - `merge`：三路合并，自动区分真/假冲突，原子提交——**100 万行变更 merge 仅需 16 秒**。
+  - `revert`：恢复到任意历史快照。
+  - 论文《Version Control System for Data with MatrixOne》（**arXiv:2604.03927**）；在 TPC-H 100GB（6 亿行）上，内置版本控制操作比等价 SQL 实现快 **100–500 倍**。
+- **2025 双产品**：
+  - **MOI（MatrixOne Intelligence）**：AI 原生数据智能平台。让 Agent 通过自然语言理解并操作结构化业务数据——**NL2SQL**（自然语言→精确查询）、**语义层**（业务概念→数据结构映射）、RAG 与 agent 能力。是"agent 认知世界的接口 / agent 的数据库"。
+  - **Memoria**：开源 AI Agent 记忆层，构建在 MatrixOne 之上、直接复用版本控制能力；记忆可被分支、比较、合并、回滚。是"agent 的内存 / 积累经验的机制"。
+
+### 技术全景（分层）
+- 底层：MatrixOne 数据库内核（不可变存储、MVCC、LSM 树、存算分离）。
+- 核心能力层：版本控制原语（snapshot/clone/diff/merge/revert）。
+- 双支柱：数据平台 MOI（agent 的"数据库"）+ 记忆层 Memoria（agent 的"内存"）。
+- 应用层：**Branch as Sandbox**（零拷贝分支为每个 agent 任务建隔离沙箱、diff 生成变更报告供审查、merge 原子发布）与 **Git for Agent**（不仅版本化数据与记忆，还版本化 agent 行为策略，用 diff 驱动持续优化）。
+- 关键：业务数据、agent 记忆、执行状态共享**同一套版本控制基础设施**、在同一事务框架下管理。
+
+### Control → Trust 理念
+- Agent 不被信任，不是因为不够聪明，而是行为不受控制（不可预测/不可审计/不可回滚）。
+- 类比：信任银行因每笔交易可记录/追溯/申诉/逆转；信任软件因有版本控制/代码审查/测试流水线/回滚。
+- 五大属性：可追溯（traceability）、可隔离（isolation）、可审查（reviewability，变更以 Pull Request 形式呈现）、可回滚（reversibility）、可整合（integrability）。
+- "Control your data, trust your AI"：Control your data = 行级精度、语义感知、事务级保障的版本控制；Trust your AI = 在此控制力上安全地让 agent 操作数据、积累记忆、协作执行、持续进化。"控制不是对 AI 的限制，而是信任的前提"。
+
+### 开源与论文链接
+- 论文：arXiv:2604.03927
+- MatrixOne：github.com/matrixorigin/matrixone
+- Memoria：github.com/matrixorigin/memoria
+
 ## 三、沿用自 2025 版白皮书的数据（如继续引用需复核时效）
 - 麦肯锡：到 2030 年 AI 有望为全球 GDP 贡献高达 **13 万亿美元** 增长。
 - Gartner（旧）：2026 年超 80% 企业将使用 GenAI API/模型或部署相关应用（2023 年 < 5%）。
