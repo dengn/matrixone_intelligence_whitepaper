@@ -25,13 +25,19 @@
 - 所有外部引用数据（市场预测、统计等）均在 `research/references.md` 标注来源。
 - 产品名词、能力描述以矩阵起源官方口径为准（见 references）。
 
+## 主题与主线（v2）
+
+**Control your data, trust your AI（控制你的数据，信任你的 AI）**
+
+依据矩阵起源官方系列总纲《从数据版本控制到智能体自进化》重构：Agent 从 Harness 走向 Runtime，Runtime 的四大需求（状态/审计/协作/记忆）共同指向**版本控制**（且只能在数据库内核实现）→ 矩阵起源"五年磨一剑"（内核 → Git for Data → MOI + Memoria 双支柱 → Branch as Sandbox / Git for Agent）。详见 `OUTLINE.md`。
+
 ## 状态
 
-- [x] 调研旧白皮书（2025 MOI、MatrixOne 产品白皮书）与最新产品/市场信息
-- [x] 输出 2026 版叙事主线与详细大纲（`OUTLINE.md`）
-- [x] 中文版全文初稿（`whitepaper/zh/`，6 章 + 封面）
-- [x] 英文版全文初稿（`whitepaper/en/`，6 章 + 封面）
-- [ ] 补充新行业案例 / 正式架构图（当前为文字+占位图）
+- [x] 调研旧白皮书与最新产品/市场信息
+- [x] 输出 2026 版叙事主线与详细大纲（`OUTLINE.md` v2）
+- [x] 中文版全文（`whitepaper/zh/`，6 章 + 封面）
+- [x] 英文版全文（`whitepaper/en/`，6 章 + 封面）
+- [ ] 补充新行业案例 / 正式架构图（当前为文字+ASCII 占位）
 - [ ] 全文校对与定稿
 
-> 当前已完成 **中英双语全文初稿**。后续可按需补充新案例、替换正式架构图，并做整体润色定稿。
+> 当前已完成 **中英双语全文（v2，Control your data, trust your AI 主线）**。后续可按需补充新案例、替换正式架构图，并做整体润色定稿。

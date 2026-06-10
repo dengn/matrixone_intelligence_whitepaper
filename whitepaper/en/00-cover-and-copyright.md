@@ -1,12 +1,12 @@
 # MatrixOne Intelligence
 
-## The AI-Native Data & Memory Backbone for the Agentic AI Era
+## Control your data, trust your AI
 
-### —— Multimodal Data Intelligence Solution White Paper (2026 Edition)
+### The Version-Control-Native Data & Memory Backbone for the Agent Runtime Era
 
-**Turn Data into Intelligence · Govern Data with Intelligence**
+#### —— AI-Native Data Intelligence Solution White Paper (2026 Edition)
 
-*Your Data · Your Memory · Your Agents*
+*Turn Data into Intelligence · Govern Data with Intelligence*
 
 ---
 
@@ -18,35 +18,31 @@ Matrix Origin (Shenzhen) Co., Ltd.
 
 ## Table of Contents
 
-- **Preface**: From GenAI to Agentic AI — A Paradigm Shift in the Data Foundation
-- **Chapter 1 · The Data Challenges of the Agentic Era**
-  - 1.1 From "Thinking" to "Doing": The Dawn of the Agent Era
-  - 1.2 The "Valley of Death" Beneath the Hype
-  - 1.3 The Bottleneck Has Moved: From Model Capability to Data, Context, and Memory
-  - 1.4 Why the Traditional Data Stack Can't Feed an Agent
-  - 1.5 Real-World Adoption Hurdles
-  - 1.6 Summary
-- **Chapter 2 · MatrixOne Intelligence: The AI-Native Data & Memory Backbone**
-  - 2.1 Overview and Positioning
-  - 2.2 The Intelligence Flywheel: Data Drives AI, AI Refines Data
-  - 2.3 Overall Solution Architecture
-  - 2.4 Five Core Innovations
-  - 2.5 Product Portfolio
-  - 2.6 Technical Characteristics and Advantages
-- **Chapter 3 · The Data Lifecycle for Agents**
-  - 3.1 The Overall Data Flow
-  - 3.2 Multi-Source Ingestion and One-Lake Convergence
-  - 3.3 AI-Native Parsing
-  - 3.4 Agentic Data Governance
-  - 3.5 Knowledge Bases and Hybrid Retrieval: Context Engineering
-  - 3.6 Agent Memory: Memoria
-  - 3.7 Git-for-Data: A Foundation of Trust and Compliance
-  - 3.8 MCP Interoperability: Plug-and-Play for Agents
-  - 3.9 High-Performance Runtime and End-to-End Security
-  - 3.10 Summary
-- **Chapter 4 · Industry Practice**
+- **Preface**: Control your data, trust your AI
+- **Chapter 1 · From Harness to Runtime: The Real Challenge of Making Agents Work**
+  - 1.1 Where Agents Are Today: Three Stages
+  - 1.2 From Harness to Runtime: What Is the Core Problem
+  - 1.3 The Four Core Problems of Agent Runtime
+  - 1.4 Four Problems, One Gap: Version Control
+  - 1.5 Why It Can Only Be Done in the Database Kernel
+  - 1.6 The Hype and the Chasm
+- **Chapter 2 · Matrix Origin: Five Years in the Making**
+  - 2.1 2020–2023: Building the Database Kernel
+  - 2.2 2024: Git for Data
+  - 2.3 2025: The MOI Data Platform and the Memoria Memory Layer
+- **Chapter 3 · The Complete Picture: Version-Control-Native Data Infrastructure for Agents**
+  - 3.1 The Technical Panorama
+  - 3.2 Need 1: State Management & Durable Execution → Version Control + Data Platform
+  - 3.3 Need 2: Observability & Audit → diff + Data Platform
+  - 3.4 Need 3: Collaboration → clone + merge + Memory Layer
+  - 3.5 Need 4: Memory & State Governance → Memoria + Version Control
+  - 3.6 One Shared Version-Control Infrastructure
+  - 3.7 The Application Layer: Branch as Sandbox & Git for Agent
+- **Chapter 4 · MatrixOne Intelligence Platform Deep Dive**
+  - Multimodal ingestion · AI-native parsing · Agentic governance · Hybrid retrieval & context engineering · NL2SQL & semantic layer · Five core innovations · Product portfolio
+- **Chapter 5 · Industry Practice**
   - Extreme Vision · Shenzhi City · Jiangxi Copper · Kito · Suwen TechAgent
-- **Chapter 5 · Conclusion and Outlook**
+- **Chapter 6 · Control and Trust: Philosophy and Outlook**
 
 ---
 
