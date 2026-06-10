@@ -9,10 +9,14 @@
 ├── OUTLINE.md            # 叙事主线与详细章节大纲（先确认这里）
 ├── README.md             # 本说明
 ├── whitepaper/           # 白皮书正文（按章节拆分的 Markdown 源文件）
+│   ├── zh/               # 中文版（主版本）
+│   ├── en/               # English version
 │   └── assets/           # 图表 / 配图资源
 └── research/
     └── references.md     # 引用数据来源与事实清单
 ```
+
+白皮书为 **中英双语**，中文版位于 `whitepaper/zh/`，英文版位于 `whitepaper/en/`，章节一一对应。
 
 ## 写作约定
 
